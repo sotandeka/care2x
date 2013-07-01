@@ -223,6 +223,7 @@ class GuiInputPerson {
 				if ($sex=='') { $errorsex=1; $error++;}
 			}
 			# If the validation produced no error, save the data
+
 			if(!$error) {
 				# Save the old filename for testing
 				$old_fn=$photo_filename;
@@ -237,13 +238,13 @@ class GuiInputPerson {
 					# Get the file extension
 					$picext=$img_obj->UploadedImageMimeType();
 				}
+
 //addr_citytown_nr='$addr_citytown_nr',
 				if(($update )) {
 
 					//echo formatDate2STD($geburtsdatum,$date_format);
 					$sql="UPDATE $dbtable SET
                                                          title='$title',
-                                                         selian_pid='$selian_pid',
                                                          name_last='$name_last',
                                                          name_first='$name_first',
                                                          name_2='$name_2',
@@ -272,7 +273,7 @@ class GuiInputPerson {
 							 subcounty = '$subcounty',
 							 employer = '$employer',
 							 NOKName = '$NOKName',
-							 NOKTel = '$nok_tel',
+							 NOKTel = '$NOKTel',
 							 NOKRelation = '$NOKRelation',
                                                          sss_nr='',
                                                          nat_id_nr='',
@@ -280,14 +281,12 @@ class GuiInputPerson {
                                                          ethnic_orig='$ethnic_orig',
 							 insurance_ID='$insurance_ID',
                                                          date_update='".date('Y-m-d H:i:s')."',";
-
 					if($region !="-1" && $district!="-1" && $ward!="-1")
 					{
 						$sql.="region='$region',
 							   district='$district',
 							   ward='$ward',";
 					}
-
 
 					//if ($old_fn!=$photo_filename){
 					if ($valid_image){
@@ -689,13 +688,13 @@ class GuiInputPerson {
 				alert("<?php echo $LDPlsEnterLastName; ?>");
 				d.name_last.focus();
 				return false;
-                        }else if(d.nok_tel.value=="") {
+                        }else if(d.NOKTel.value=="") {
                                 alert("Enter next of kin telephone no");
-                                d.nok_tel.focus();
+                                d.NOKTel.focus();
                                 return false;
-			}else if(isNaN(d.nok_tel.value)) {
+			}else if(isNaN(d.NOKTel.value)) {
                                 alert("Enter only digits for tel no");
-                                d.nok_tel.focus();
+                                d.NOKTel.focus();
                                 return false;
 			 }else if(d.addr_zip.value=="") {
                                 alert("Enter P.O. Box No");
@@ -1273,7 +1272,7 @@ TODO: Kompletly not shown, or dependig on who is editing: Doctor, Lab?
 			</tr>
 			<tr>
 				<td class="reg_item"><FONT SIZE=-1  FACE="Arial,verdana,sans serif">
-				<?php if($errormaiden) { echo '<font color="FF0000">'; } echo "*"."Districtz";?></td>
+				<?php if($errormaiden) { echo '<font color="FF0000">'; } echo "*"."District";?></td>
 				<td  class="reg_input" colspan=1 id="dstr">
 							<select name="district" size="1" id="district" onChange="getCounty(this.value,'<?php echo $base_url; ?>')">
 							<?php
@@ -1521,7 +1520,7 @@ TODO: Kompletly not shown, or dependig on who is editing: Doctor, Lab?
                                 <FONT SIZE=-1  FACE="Arial" ><FONT  SIZE=2  FACE="Arial"><?php echo $LDNOKTel ?>
                         </td>
                         <td class="reg_input">
-                                <input type="text" name="nok_tel" size=15 maxlength=25 value="<?php echo $nok_tel; ?>" onFocus="this.select();">
+                                <input type="text" name="NOKTel" size=15 maxlength=25 value="<?php echo $NOKTel; ?>" onFocus="this.select();">
                         </td>
                         </tr>
 
